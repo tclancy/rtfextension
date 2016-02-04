@@ -2,6 +2,9 @@
   "manifest_version": 2,
   "name": "RTF Reader",
   "version": "0.1",
+  "permissions": [
+    "activeTab"
+   ],
   "content_scripts": [
     {
       "matches": [
@@ -13,5 +16,8 @@
         "reader.js"
       ]
     }
-  ]
+  ],
+  "browser_action": {
+    "default_icon": "icon.png"
+  }
 }
