@@ -1,23 +1,30 @@
 {
   "manifest_version": 2,
   "name": "RTF Reader",
+  "description": "Opens RTF files for Chromebooks",
   "version": "0.1",
   "permissions": [
-    "activeTab"
+    "fileSystem"
    ],
-  "content_scripts": [
-    {
-      "matches": [
-        "https?://*/*.rtf"
+  "app": {
+    "background": {
+      "scripts": ["reader.js"]
+    }
+  },
+  "file_handlers": {
+    "rtf": {
+      "types": [
+        "application/rtf",
+        "application/x-rtf",
+        "text/rtf",
+        "text/richtext",
+        "application/msword",
+        "application/doc",
+        "application/x-soffice"
       ],
-      "js": [
-        "jquery-2.2.0.min.js",
-        "rtf.js",
-        "reader.js"
+      "extensions": [
+        "rtf"
       ]
     }
-  ],
-  "browser_action": {
-    "default_icon": "icon.png"
   }
 }
