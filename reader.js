@@ -1,3 +1,5 @@
+console.log("reader");
+
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
     chrome.app.window.create('window.html', {
         'id': 'rtf',
@@ -5,20 +7,13 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
         'width': 400,
         'height': 500
         }
-    }, function (rtf_window) {
-        chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-            if (response) {
-                console.log(response.farewell);
-            } else {
-                console.log("NO CARRIER");
-            }
-        });
-    });
-
-
-    // console.log(reader);
-    // chrome.app.window.getAll()[0]
-    // document here refers to the background page and not the window we have open
-    //document.getElementsByTagName("div")[0].textContent = "Bite me";
+    }, handleViewerOpening);
 });
+
+function handleViewerOpening(rtf_window)
+{
+    var d = rtf_window.contentWindow.document;
+    // this is a terrible hack but I can't figure out how to get an onload/ ready event to fire
+    setTimeout(function () {d.getElementsByTagName("div")[0].textContent = "WORKING?";}, 500)
+}
 
